@@ -50,6 +50,8 @@ const updateNote = asyncHandler(async (req, res) => {
     }
 });
 
+
+//this is thecontroller to delete a note
 const deleteNote = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
@@ -66,4 +68,26 @@ const deleteNote = asyncHandler(async (req, res) => {
     }
 });
 
-export { createNote, updateNote, deleteNote }
+
+const allNotes = asyncHandler(async (req, res) => {
+
+    try {
+        const userId = req.user.id;
+
+        const notes = await Note.find({ user: userId }).populate('user');
+
+        const filteredNotes = notes.map(note => ({
+            title: note.title,
+            content: note.content
+        }));
+
+        res
+            .status(200)
+            .json(filteredNotes);
+
+    } catch (error) {
+        throw new ApiError(500, "Failed to find notes, please try again");
+    }
+});
+
+export { createNote, updateNote, deleteNote, allNotes }
