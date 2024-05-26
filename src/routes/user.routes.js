@@ -20,5 +20,4 @@ router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/changepassword").post(verifyJWT, changeCurrentPassword)
 
 
-
 export default router;

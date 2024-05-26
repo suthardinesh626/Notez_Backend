@@ -77,6 +77,7 @@ const allNotes = asyncHandler(async (req, res) => {
         const notes = await Note.find({ user: userId }).populate('user');
 
         const filteredNotes = notes.map(note => ({
+            id: note._id,
             title: note.title,
             content: note.content
         }));
