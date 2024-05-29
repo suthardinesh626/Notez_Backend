@@ -4,6 +4,9 @@
   "description": "This is project about notes app, where anyone register and create therer notes. ",
   "type": "module",
   "main": "index.js",
+  "engines": {
+    "14.x"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
