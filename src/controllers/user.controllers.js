@@ -39,11 +39,9 @@ const registerUser = asyncHandler(async (req, res) => {
     if (existedUser) {
         throw new ApiError(409, "User with this username or email already exists")
     }
-    // console.log(req.files)
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
-
-    console.log('Uploaded file path:', avatarLocalPath);
+    // console.log('Uploaded file path:', avatarLocalPath);
 
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar not found");
