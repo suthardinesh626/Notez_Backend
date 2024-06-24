@@ -25,11 +25,11 @@ import connectDB from "./db/index.js";
 const app = express();
 
 
-// Load environment variables from .env file
-dotenv.config({
-    path: './.env'
-});
-
+// Load environment variables from .env file only in development
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config({ path: './.env' });
+  }
+  
 
 
 
@@ -37,6 +37,8 @@ connectDB()
     .then(() => {
         app.listen(process.env.PORT || 3000, () => {
             console.log(`Server is running on port: ${process.env.PORT || 3000}`);
+            // console.log(`Connecting to MongoDB with URI: ${process.env.MONGODB_URI}`);
+
         });
     })
     .catch((err) => {
