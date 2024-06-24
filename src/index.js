@@ -22,6 +22,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from "./db/index.js";
 
+const app = express();
+
+
 // Load environment variables from .env file
 dotenv.config({
     path: './.env'
@@ -39,9 +42,8 @@ connectDB()
     .catch((err) => {
         console.log("MONGO connection failed!!", err);
     });
-const app = express();
 
-// Middleware configuration
+
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
